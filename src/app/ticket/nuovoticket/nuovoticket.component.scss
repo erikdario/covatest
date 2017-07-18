@@ -1,0 +1,13 @@
+.vertical-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.mybutton-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mybutton {
+  padding-left: 10px;
+}

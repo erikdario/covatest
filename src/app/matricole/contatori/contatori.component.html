@@ -1,0 +1,29 @@
+<div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
+  <div flex-gt-sm="50">
+    <md-card>
+      <md-card-title>Copie B/N</md-card-title>
+      <md-card-subtitle>Copie bianco nero effettuate nel mese</md-card-subtitle>
+      <md-divider></md-divider>
+      <div class="chart-height push-top push-right-sm">
+        <ngx-charts-pie-grid class="chart-height"
+                             [scheme]="colorScheme"
+                             [results]="copieBn">
+        </ngx-charts-pie-grid>
+      </div>
+    </md-card>
+  </div>
+  <div flex-gt-sm="50">
+    <md-card>
+      <md-card-title>Copie Colore</md-card-title>
+      <md-card-subtitle>Copie colore effettuate nel mese</md-card-subtitle>
+      <md-divider></md-divider>
+      <div class="chart-height push-top push-right-sm">
+        <ngx-charts-pie-grid class="chart-height"
+                             [scheme]="colorScheme"
+                             [results]="copieColore">
+        </ngx-charts-pie-grid>
+      </div>
+    </md-card>
+  </div>
+</div>
+

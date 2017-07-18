@@ -1,0 +1,23 @@
+<md-card>
+  <md-card-title>Allegati</md-card-title>
+  <md-card-subtitle>Selezionare il documento</md-card-subtitle>
+  <md-divider></md-divider>
+  <md-list class="will-load alert-list">
+    <ng-template tdLoading="alerts.load">
+      <ng-template let-item let-last="last" ngFor [ngForOf]="allegati">
+        <md-list-item layout-align="row">
+          <md-icon md-list-avatar class="bgc-amber-800">{{item.icon}}</md-icon>
+          <h3 md-line> {{item.description}} </h3>
+          <p md-line> {{item.name}} </p>
+        </md-list-item>
+        <md-divider *ngIf="!last" md-inset></md-divider>
+      </ng-template>
+    </ng-template>
+  </md-list>
+  <md-divider></md-divider>
+  <md-card-actions>
+    <a md-button color="accent" class="text-upper">
+      <span>Totale documenti: {{allegati.length}}</span>
+    </a>
+  </md-card-actions>
+</md-card>

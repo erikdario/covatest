@@ -1,0 +1,71 @@
+<td-layout-nav logo="assets:metservice">
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <span>Matricole</span>
+    <span flex></span>
+    <a md-icon-button mdTooltip="Docs" href="https://teradata.github.io/covalent/" target="_blank"><md-icon>chrome_reader_mode</md-icon></a>
+    <a md-icon-button mdTooltip="Github" href="https://github.com/teradata/covalent" target="_blank"><md-icon svgIcon="assets:github"></md-icon></a>
+  </div>
+  <router-outlet *ngIf="!gridMatricoleVisible"></router-outlet>
+  <div *ngIf="gridMatricoleVisible" layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
+    <div flex-gt-sm="100">
+      <div *tdLoading="'matricole.load';strategy:'overlay';">
+      <md-card>
+        <md-card-title>Matricole in dotazione</md-card-title>
+        <md-card-subtitle>seleziona la matricola desiderata per entrare nell'anagrafica</md-card-subtitle>
+        <md-divider></md-divider>
+        <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+  <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
+    <span class="md-title">Matricolez</span>
+  </span>
+          <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm" placeholder="Search here" (searchDebounce)="search($event)" flex>
+          </td-search-box>
+        </div>
+        <md-divider></md-divider>
+        <td-data-table
+          #dataTable
+          [data]="filteredData"
+          [columns]="columns"
+          [selectable]="selectable"
+          [clickable]="clickable"
+          [multiple]="multiple"
+          [sortable]="true"
+          [sortBy]="sortBy"
+          [(ngModel)]="selectedRows"
+          [sortOrder]="sortOrder"
+          (sortChange)="sort($event)">
+        <ng-template tdDataTableTemplate="#" let-value="value" let-row="row" let-column="column">
+          <div layout="row" class="row-icon-margin">
+            <div md-card-avatar class="header-image"></div>
+            <div md-card-avatar [ngClass]="{'header-green': row['CodiceMatricola']=='1111' || row['CodiceMatricola']=='2222',
+                                            'header-red': row['CodiceMatricola']=='3333'}"></div>
+            <div layout="column" class="row-link-margin">
+              <a md-colors="{color:'accent'}" (click)="hideGridMatricole()" [routerLink]="['schedamatricola', row['CodiceMatricola']]">
+                <span>Scheda Matricola</span>
+              </a>
+              <a class="row-link" (click)="hideGridMatricole()" [routerLink]="['schedamatricola', row['CodiceMatricola'], 'allegati']">
+                <span>Allegati</span>
+              </a>
+            </div>
+          </div>
+        </ng-template>
+        </td-data-table>
+        <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+          <h3>No results to display.</h3>
+        </div>
+        <td-paging-bar #pagingBar [pageSizes]="[5, 10, 15, 20]" [total]="filteredTotal" (change)="page($event)">
+          <span td-paging-bar-label hide-xs>Row per page:</span>
+          {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+        </td-paging-bar>
+      </md-card>
+      </div>
+    </div>
+  </div>
+  <td-layout-footer>
+    <div layout="row" layout-align="start center">
+      <span class="md-caption">Copyright &copy; 2016 Teradata. All rights reserved</span>
+      <span flex></span>
+      <md-icon class="md-icon-ux" svgIcon="assets:teradata-ux"></md-icon>
+    </div>
+  </td-layout-footer>
+</td-layout-nav>
+

@@ -1,0 +1,77 @@
+<div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
+
+  <div flex-gt-sm="60">
+    <md-card>
+      <!--<div layout="row" flex>-->
+        <!--<md-card-header>-->
+          <!--<md-card-title>Shiba Inu</md-card-title>-->
+        <!--</md-card-header>-->
+        <!--<span flex></span>-->
+        <!--<md-card-header>-->
+          <!--<div md-card-avatar class="example-header-image"></div>-->
+          <!--<md-card-title>Shiba Inu</md-card-title>-->
+          <!--<md-card-subtitle>Dog Breed</md-card-subtitle>-->
+        <!--</md-card-header>-->
+      <!--</div>-->
+      <div layout="row" flex>
+        <div layout="column">
+          <md-card-title>Matricola N.</md-card-title>
+          <md-card-subtitle>Modello Kyocera 1023XYZ</md-card-subtitle>
+        </div>
+        <span flex></span>
+        <div layout="row" flex>
+          <div md-card-avatar class="header-image"></div>
+          <div flex>
+            <p md-card-subtitle class="header-text">Referente Tecnico:<br>Dario Govi</p>
+          </div>
+        </div>
+      </div>
+      <md-divider></md-divider>
+      <div layout="row">
+        <div flex-gt-sm="40">
+          <md-card-content><img src="../../../assets/ico/kyocera.jpg"/></md-card-content>
+        </div>
+        <div flex-gt-sm="60">
+            <div layout="row">
+              <p>Data Inizio Garanzia:</p>
+              <p>10/10/2016</p>
+            </div>
+            <div layout="row">
+              <p>Data Fine Garanzia:</p>
+              <p>10/10/2017</p>
+            </div>
+            <div layout="row">
+              <p>Data Acquisto:</p>
+              <p>10/10/2016</p>
+            </div>
+        </div>
+      </div>
+      <md-divider></md-divider>
+      <div layout="row">
+        <md-card-content>Questa matricola è dislocata nella sezione 10 del ufficio amministrativo<br>
+        Parlare con Paolo Rossi per accesso alla macchina</md-card-content>
+      </div>
+    </md-card>
+  </div>
+  <div flex-gt-sm="40">
+    <md-card>
+      <md-card-title>Interventi</md-card-title>
+      <md-card-subtitle>interventi effettuati nell'anno in corso</md-card-subtitle>
+      <md-divider></md-divider>
+      <div class="chart-height push-top push-right-sm">
+        <ngx-charts-bar-vertical
+          [scheme]="colorScheme"
+          [results]="single"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel">
+        </ngx-charts-bar-vertical>
+      </div>
+    </md-card>
+  </div>
+</div>

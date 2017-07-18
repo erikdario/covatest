@@ -1,0 +1,54 @@
+<td-layout-nav-list #navList
+                    logo="assets:metservice"
+                    toolbarTitle="Ticket"
+                    [opened]="media.registerQuery('gt-sm') | async"
+                    [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+                    [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '350px' : '100%'">
+  <md-nav-list td-sidenav-content (click)="!media.query('gt-sm') && navList.close()">
+    <a md-list-item [routerLink]="['/']">
+      <md-icon md-list-avatar>perm_contact_calendar</md-icon>
+      <h3 md-line> Nuovo Ticket </h3>
+    </a>
+    <a md-list-item [routerLink]="['/']">
+      <md-icon md-list-avatar>receipt</md-icon>
+      <h3 md-line> Lista Ticket </h3>
+    </a>
+  </md-nav-list>
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <span>Ticket</span>
+    <span flex></span>
+  </div>
+  <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+    <md-card-title>Nuovo Ticket</md-card-title>
+    <md-divider></md-divider>
+    <div layout="column">
+      <div class = "md-margin">
+        <md-input-container>
+          <input mdInput placeholder="Matricola" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+        </md-input-container>
+        <md-autocomplete #auto="mdAutocomplete">
+          <md-option *ngFor="let state of filteredStates | async" [value]="state">
+            {{ state }}
+          </md-option>
+        </md-autocomplete>
+      </div>
+      <md-radio-group class="md-margin vertical-radio-group" [(ngModel)]="favoriteSeason">
+        <md-radio-button class="radio-button" *ngFor="let tipo of tipiInterventi" [value]="tipo">
+          {{tipo}}
+        </md-radio-button>
+      </md-radio-group>
+      <md-input-container class="md-margin">
+        <input mdInput placeholder="Oggetto">
+      </md-input-container>
+      <md-input-container class="md-margin">
+        <textarea mdInput placeholder="Note"></textarea>
+      </md-input-container>
+      <div layout="row" class="md-padding">
+        <span flex></span>
+        <button md-fab><md-icon>arrow_back</md-icon></button>
+        <div class="md-padding"></div>
+        <button md-fab><md-icon>check</md-icon></button>
+      </div>
+    </div>
+  </md-card>
+</td-layout-nav-list>
